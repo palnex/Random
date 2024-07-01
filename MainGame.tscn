@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://m2hxc8ereqsc"]
+
+[ext_resource type="Script" path="res://EnemySpawner.cs" id="1_vvsxa"]
+[ext_resource type="PackedScene" uid="uid://c0sqofmpsifqm" path="res://SpawnUnit.tscn" id="2_2epqd"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_fy6im"]
+texture_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coo5w"]
+size = Vector2(1280, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+position = Vector2(576, 512)
+scale = Vector2(5, 16)
+texture = SubResource("CurveTexture_fy6im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(576, 512)
+shape = SubResource("RectangleShape2D_coo5w")
+
+[node name="EnemySpawner" type="Timer" parent="."]
+script = ExtResource("1_vvsxa")
+
+[node name="Unit" parent="EnemySpawner" instance=ExtResource("2_2epqd")]
+position = Vector2(1216, 0)
